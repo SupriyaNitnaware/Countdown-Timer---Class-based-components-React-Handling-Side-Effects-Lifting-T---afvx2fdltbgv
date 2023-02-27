@@ -1,20 +1,20 @@
-import React, { Component, useState, useEffect } from "react";
-import '../styles/App.css';
+import React, { createContext, useState } from "react";
+
+import "../styles/App.css";
+import Comp2 from "./Comp2";
+const nameContext = createContext();
 
 const App = () => {
-  // write your code here 
-
+    const [state,setStates] = useState("")
   return (
-    <div className="wrapper">
-      <div id="whole-center">
-        <h1>
-          Reverse countdown for<input id="timeCount" onKeyDown={/* callback function */} /> sec.
-        </h1>
-      </div>
-      <div id="current-time">{/* remaining time */}</div>
+    <div id="main">
+    <nameContext.Provider value={state}>
+      <input id="input" onChange={(e)=>{setStates(e.target.value)}}/>
+      <Comp2 />
+      </nameContext.Provider>
     </div>
-  )
-}
-
+  );
+};
 
 export default App;
+export { nameContext };
